@@ -1,4 +1,4 @@
-The recository contains 4 courses from CGNinjas.ru:
+The repository contains 4 courses from CGNinjas.ru:
 
 1) Python Base:
     http://cgninjas.ru/workshop/python-base
