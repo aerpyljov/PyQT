@@ -1,0 +1,15 @@
+[ ['input', [
+    ['src', [] ],
+    ['doc', []],
+    ] ], 
+  ['output',[] ], 
+  ['scenes',[] ], 
+  ['assets',[
+    ['textures',[]],
+    ['models', [
+        ['characters',[]],
+        ['locations', []]
+        ]],
+  ] ],
+  ['Тест',[] ], 
+]
