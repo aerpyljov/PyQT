@@ -2,29 +2,27 @@
 # -*- coding: utf-8 -*-
 
 '''
-Цель скрипта: массово создавать папки с подпапками на любую глубину на основе заранее описанной в текстовом файле структуры.
-Текстовый файл предполагается создавать в Блокноте в  Windows с русским языком по умолчанию (в кодировке cp1251).
+The script allows you to create a folder tree.
+It is useful, if you have to create folders for different projects with the same sub-folders regularly.
 
-Способ применения скрипта:
-1. Создать текстовый файл в стандартной для Windows кодировке cp1251.
-2. В текстовом файле описать структуру вложенных папок. Формат описания - список Python, первый элемент в котором это строка - имя папки, а второй - тоже список, содержащий вложенные подпапки.
-3. Разместить текстовый файл в папке, внутри которой нужно будет создавать проект с подпапками.
-4. Мышкой перетащить текстовый файл на скрипт.
-5. В открывшемся окне ввести имя проекта.
+Requirements:
+- MS Windows with Russian regional and language settings.
+- Python 2.7.
+- TXT-file, describing a folder tree (encoding cp1251).
 
-В результате в папке с текстовым файлом должна появится папка, имя которой берётся из имени проекта, а внутри нее - подпапки, описанные в текстовом файле.
+How to use:
+- Put the TXT-file in a folder, where you want to create a project folder.
+- Drag and drop the TXT-file on the script.
+- Enter the project name in English or Russian.
 
+What is different from the example:
+- The folder tree isn't a part of the script.
+- The root folder for the project isn't a part of the script.
+- Folder names can be not only in English, but in Russian too(encoding cp1251).
+- A project name can be not only in English, but in Russian too(encoding cp866).
 
-Отличия от решения из примера:
-- Структура папок читается из файла, а не прописана в скрипте.
-- Корневой каталог для проектов берётся на основе того, в какой папке лежит текстовый файл, а не прописан в скрипте.
-- Имена папок в файле можно задавать на русском языке.
-- Имя проекта в консоли можно вводить на русском языке.
-
-
-Не удалось сделать только одно: обеспечить описание структуры папок в человекопонятном формате, а не в виде списка Python.
-Желаемый формат - задавать вложенность папок на основе количества отступов табуляцией.
-
+What I haven't managed to do:
+- I wanted to use a user-friendly format for TXT-file (with TAB to make a folder tree), but I had to use a list (Python data structure).
 '''
 
 
@@ -33,25 +31,25 @@ import sys
 import ast
 import codecs
 
-"Определяем имя переданного файла и его папку, которая будет папкой для создания проекта"
+"Find file name and its folder to use as the folder for the project"
 filePath = sys.argv[1]
 path = os.path.dirname(filePath)
 
 
-"Зачитываем структуру папок из файла с учётом кодировки"
+"Get the folder from the file (Russian names also can be used)"
 foldersAsText = codecs.open(filePath, encoding='cp1251').read()
 folders = ast.literal_eval(foldersAsText)
 
 
 
 def createFolder(path):
-"Функция для создания папок с проверкой на наличие"
+"Create a folder if it doesn't exist"
     if not os.path.exists(path):
         os.mkdir(path)
 
 
 def build(root, data):
-"Функция для рекурсивного создания папок начиная от заданной корневой"
+"Create folders recursively in the root folder"
     if data:
         for d in data:
             rawName = d[0]
@@ -60,7 +58,7 @@ def build(root, data):
             createFolder(path)
             build(path, d[1])
 
-"Запрашиваем имя папки проекта и вызываем функции для её создания и заполнения подпапками"
+"Ask the user to enter a project name and use it as a root folder for all folders, described in the file(a Russian name also can be used)"
 projectname = raw_input('Enter project name: ').decode('cp866')
 if projectname:
     fullPath = os.path.join(path, projectname)
