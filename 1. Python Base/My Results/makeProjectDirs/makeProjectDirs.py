@@ -31,12 +31,12 @@ import sys
 import ast
 import codecs
 
-"Find file name and its folder to use as the folder for the project"
+# Get file name and its folder to use as the folder for the project
 filePath = sys.argv[1]
 path = os.path.dirname(filePath)
 
 
-"Get the folder from the file (Russian names also can be used)"
+# Get the folder from the file (Russian names also can be used)
 foldersAsText = codecs.open(filePath, encoding='cp1251').read()
 folders = ast.literal_eval(foldersAsText)
 
@@ -58,7 +58,7 @@ def build(root, data):
             createFolder(path)
             build(path, d[1])
 
-"Ask the user to enter a project name and use it as a root folder for all folders, described in the file(a Russian name also can be used)"
+# Ask the user to enter a project name and use it as a root folder for all folders, described in the file(a Russian name also can be used)
 projectname = raw_input('Enter project name: ').decode('cp866')
 if projectname:
     fullPath = os.path.join(path, projectname)
