@@ -18,8 +18,8 @@ How to use:
 What is different from the example:
 - The folder tree isn't a part of the script.
 - The root folder for the project isn't a part of the script.
-- Folder names can be not only in English, but in Russian too(encoding cp1251).
-- A project name can be not only in English, but in Russian too(encoding cp866).
+- Folder names can be not only in English, but in Russian too.
+- A project name can be not only in English, but in Russian too.
 
 What I haven't managed to do:
 - I wanted to use a user-friendly format for TXT-file (with TAB to make a folder tree), but I had to use a list (Python data structure).
@@ -65,5 +65,6 @@ if projectname:
     createFolder(fullPath)
     build(fullPath, folders)
 
-    
+print 'Complete!'
+raw_input()
   

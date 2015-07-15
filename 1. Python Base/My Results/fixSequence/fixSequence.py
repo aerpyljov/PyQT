@@ -30,11 +30,9 @@ What is different from the example:
 - The folder with photos isn't a part of the script.
 - New sequence names aren't parts of the script.
 - It creates a file with statistics.
-- The name of the folder with photos can be not only in English, but in Russian too(encoding cp1251).
-- Original names of the photos can be not only in English, but in Russian too(encoding cp1251).
-- New names of the photos can be not only in English, but in Russian too(encoding cp1251).
-
-
+- The name of the folder with photos can be not only in English, but in Russian too.
+- Original names of the photos can be not only in English, but in Russian too.
+- New names of the photos can be not only in English, but in Russian too.
 """
 
 
@@ -43,7 +41,7 @@ import sys
 import shutil
 
 
-# Define defaul settings
+# Define default settings
 padding = 4
 
 
@@ -75,10 +73,11 @@ def getNewSequenceNames(sequences):
     newSequenceNames = dict.fromkeys(sequences)
     usedSequenceNames = ""
     for s in sequences:
-        message = """Enter a new name for a sequence with name "{0}".\nYou have already used these names: {1}.\nType new name: """.format(s, usedSequenceNames)
+        print s
+        message = """Enter a new name for a sequence with name "{0}".\nYou have already used these names: {1}.\nType new name: """.format(s.encode('cp866'), usedSequenceNames.encode('cp866'))
         rawNewSequenceName = raw_input(message).decode('cp866')
         while unicode(rawNewSequenceName) in newSequenceNames.values():
-            message = """Sorry, the name {0} is already used. """.format(rawNewSequenceName) + message
+            message = """Sorry, the name "{0}" is already used. """.format(rawNewSequenceName.encode('cp866')) + message
             rawNewSequenceName = raw_input(message).decode('cp866')
         newSequenceName = rawNewSequenceName
         newSequenceNames[s] = newSequenceName
@@ -182,7 +181,7 @@ for s in newSequenceNames:
     offset = getOffset(frames)
     newSequenceName = newSequenceNames[s]
     copySequence(path, sequenceFiles, newSequenceName, offset, padding)
-    statisticsInfo = "- {0} -> {1}: {2} files (missing frames: {3})\n".format(s, newSequenceName, numFilesInSequence, missFrames)
+    statisticsInfo = "- {0} -> {1}: {2} files (missing frames: {3})\n".format(s.encode('cp1251'), newSequenceName.encode('cp1251'), numFilesInSequence, missFrames)
     statistics += statisticsInfo
 
 filename = os.path.join(path, "statistics.txt")
@@ -192,12 +191,21 @@ file.close()
 
 
 
-# Delete original files
+# Delete original files and add the result message to the statistics
 a = raw_input('Remove old files? [y/n]: ')
 if a == 'y' or a == 'Y':
     for f in files:
         os.remove(os.path.join(path, f))
-print 'Complete!!!'
+    result = "DELETED"
+result = "NOT deleted"
+resultMessage = "\nOriginal files were {0}.".format(result)
+
+filename = os.path.join(path, "statistics.txt")
+file = open(filename, 'a')
+file.write(resultMessage)
+file.close()
+
+print 'Complete!'
 raw_input()
 
 
