@@ -1,15 +1,18 @@
 [ ['input', [
-    ['src', [] ],
+    ['src', []],
     ['doc', []],
     ] ], 
-  ['output',[] ], 
-  ['scenes',[] ], 
-  ['assets',[
-    ['textures',[]],
+  ['output', [] ], 
+  ['scenes', [] ], 
+  ['assets', [
+    ['textures', []],
     ['models', [
         ['characters',[]],
         ['locations', []]
         ]],
   ] ],
-  ['Тест',[] ], 
+  ['Тест',[
+    ['Подтест 1', []],
+    ['Подтест 2', []],
+    ]], 
 ]

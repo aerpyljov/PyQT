@@ -43,13 +43,13 @@ folders = ast.literal_eval(foldersAsText)
 
 
 def createFolder(path):
-"Create a folder if it doesn't exist"
+    "Create a folder if it doesn't exist"
     if not os.path.exists(path):
         os.mkdir(path)
 
 
 def build(root, data):
-"Create folders recursively in the root folder"
+    "Create folders recursively in the root folder"
     if data:
         for d in data:
             rawName = d[0]
