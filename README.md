@@ -11,3 +11,7 @@ The repository contains 4 courses from CGNinjas.ru:
     
 4) PyQt. Графика и Стили:
     http://cgninjas.ru/workshop/python-pyqt2
+
+Every lesson has two folders:
+- "Examples" - contains materials, provided by the author of the course.
+- "My Results" - contains the results of my work.
