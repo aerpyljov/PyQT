@@ -13,7 +13,8 @@ Requirements:
 - MS Windows.
 - Python 2.7.
 - A folder with files (usually photos).
-- Every file must have a name, consisting of two parts: (1) one or more non-digits and (2) one or more digits. For example: 'photo-12.jpg'
+- Every file must have a name, consisting of two parts: (1) one or more non-digits and (2) one or more digits.
+For example: 'photo-12.jpg'.
 The second part will be converted as a number, so it must be unique for all files with the same first parts: 
 you can't have both files with names like 'photo01' and 'photo1', because after the conversion '01' will be equal to '1'.
 The second part after the conversion must be 1 or more, not 0.
@@ -74,7 +75,8 @@ def getNewSequenceNames(sequences):
     usedSequenceNames = ""
     for s in sequences:
         print s
-        message = """Enter a new name for a sequence with name "{0}".\nYou have already used these names: {1}.\nType new name: """.format(s.encode('cp866'), usedSequenceNames.encode('cp866'))
+        message = """Enter a new name for a sequence with name "{0}".\nYou have already used these names: {1}.\n
+                    Type new name: """.format(s.encode('cp866'), usedSequenceNames.encode('cp866'))
         rawNewSequenceName = raw_input(message).decode('cp866')
         while unicode(rawNewSequenceName) in newSequenceNames.values():
             message = """Sorry, the name "{0}" is already used. """.format(rawNewSequenceName.encode('cp866')) + message
@@ -181,7 +183,8 @@ for s in newSequenceNames:
     offset = getOffset(frames)
     newSequenceName = newSequenceNames[s]
     copySequence(path, sequenceFiles, newSequenceName, offset, padding)
-    statisticsInfo = "- {0} -> {1}: {2} files (missing frames: {3})\n".format(s.encode('cp1251'), newSequenceName.encode('cp1251'), numFilesInSequence, missFrames)
+    statisticsInfo = "- {0} -> {1}: {2} files (missing frames: {3})\n"\
+                        .format(s.encode('cp1251'), newSequenceName.encode('cp1251'), numFilesInSequence, missFrames)
     statistics += statisticsInfo
 
 filename = os.path.join(path, "statistics.txt")

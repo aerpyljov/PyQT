@@ -22,7 +22,8 @@ What is different from the example:
 - A project name can be not only in English, but in Russian too.
 
 What I haven't managed to do:
-- I wanted to use a user-friendly format for TXT-file (with TAB to make a folder tree), but I had to use a list (Python data structure).
+- I wanted to use a user-friendly format for TXT-file (with TAB to make a folder tree),
+but I had to use a list (Python data structure).
 '''
 
 
@@ -58,7 +59,8 @@ def build(root, data):
             createFolder(path)
             build(path, d[1])
 
-# Ask the user to enter a project name and use it as a root folder for all folders, described in the file(a Russian name also can be used)
+# Ask the user to enter a project name and use it as a root folder for all folders, described in the file
+# (a Russian name also can be used)
 projectname = raw_input('Enter project name: ').decode('cp866')
 if projectname:
     fullPath = os.path.join(path, projectname)
